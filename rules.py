@@ -31,8 +31,10 @@ def string_to_module(rule):
             arguments = [item.strip() for item in rule[index + 2:until].split(',')]
             instruction.append(Module(rule[index], arguments))
             index = until + 1
-        else:
+        elif rule[index] != ' ':
             instruction.append(Module(rule[index]))
+            index += 1
+        else:
             index += 1
     return instruction
 
@@ -63,6 +65,7 @@ class Rules(Turtle):
 
     def interpret(self):
         for i in self.instruction:
+            print(i.letter)
             if (i.letter == 'F'):
                 super(Rules, self).set_pen(True)
                 super(Rules, self).move(i.parameter[0])
@@ -100,3 +103,7 @@ class Rules(Turtle):
 
             self.instruction = final_instruct
         self.interpret()
+
+rules = Rules({'a': 22.5, 'd': 0.1}, 'F(d)', ['F(x): * -> F(d)F(d)+(-a)[+(-a)F(d)+(a)F(d)+(a)F(d)] \
+                                      +(a)[+(a)F(d)+(-a)F(d)+(-a)F(d)]'])
+rules.generate(1)
