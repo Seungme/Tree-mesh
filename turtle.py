@@ -7,7 +7,7 @@ import numpy as np
 class Path(NamedTuple):
     old_coord: list = []
     new_coord: list = []
-    width: float = 1.0
+    width: float = 0.0
 
 class Turtle:
 
@@ -15,7 +15,7 @@ class Turtle:
         self.basis = np.array([[1.0,0.0,0.0], [0.0,1.0,0.0], [0.0,0.0,1.0]])
         self.coord = np.array([0.0,0.0,0.0])
         self.pen = True
-        self.width = 1
+        self.width = 0.001
         self.stack = []
         self.path = []
 
