@@ -84,9 +84,7 @@ class Rules(Turtle):
             elif (i.letter == ']'):
                 super(Rules, self).restore();
             elif (i.letter == '!'):
-                print(self.width)
-                print(self.width)
-                super(Rules, self).set_width(self.width - i.parameter[0])
+                super(Rules, self).set_width(i.parameter[0])
 
     def generate(self, iteration):
         for i in range (iteration):
@@ -116,4 +114,3 @@ rules = Rules({'d1':94.74, 'd2':132.63, 'a':18.95,
                        [&(a)F(50)A]/(d2)[&(a)F(50)A]',
                 'F(l): * -> F(l*lr)',
                 '!(w) : * -> !(w*vr)'])
-rules.generate(1)

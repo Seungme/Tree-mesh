@@ -60,7 +60,9 @@ class Turtle:
     def save(self):
         self.stack.append(self.basis.copy())
         self.stack.append(self.coord.copy())
+        self.stack.append(self.width)
 
     def restore(self):
+        self.width = self.stack.pop()
         self.coord = self.stack.pop()
         self.basis = self.stack.pop()
