@@ -2,8 +2,6 @@ from dataclasses import dataclass
 from turtle import *
 from typing import NamedTuple
 
-from py_expression_eval import Parser
-
 
 class Module(NamedTuple):
     letter: str = ''
@@ -46,6 +44,7 @@ def replace(d, string):
 class Rules(Turtle):
 
     def __init__(self, define, axiom, production):
+        super(Rules, self).__init__()
         self.define = define
         axiom = replace(define, axiom)
         self.instruction = string_to_module(axiom)
@@ -62,6 +61,27 @@ class Rules(Turtle):
             p = Production(predecessor=m, condition=condition, successor=succ)
             self.production.append(p)
 
+    def interpret(self):
+        for i in self.instruction:
+            if (i.letter == 'F'):
+                super(Rules, self).set_pen(True)
+                super(Rules, self).move(i.parameter[0])
+            elif (i.letter == 'f'):
+                super(Rules, self).set_pen(False)
+                super(Rules, self).move(i.paramter[0])
+            elif (i.letter == '+'):
+                super(Rules, self).turn(i.parameter[0])
+            elif (i.letter == '&'):
+                super(Rules, self).pitch(i.parameter[0])
+            elif (i.letter == '/'):
+                super(Rules, self).roll(i.parameter[0])
+            elif (i.letter == '['):
+                super(Rules, self).save();
+            elif (i.letter == ']'):
+                super(Rules, self).restore();
+            elif (i.letter == '!'):
+                super(Rules, self).set_width(i.parameter[0])
+
     def generate(self, iteration):
         for i in range (iteration):
             final_instruct = [];
@@ -70,7 +90,6 @@ class Rules(Turtle):
                 if (len(value) == 0):
                     final_instruct.append(instruct)
                 else:
-                    parser = Parser()
                     d = dict(zip(value[0].predecessor.parameter, [float(x) for x in instruct.parameter]))
                     module = string_to_module(value[0].successor)
 
@@ -80,27 +99,4 @@ class Rules(Turtle):
                     final_instruct.extend(module)
 
             self.instruction = final_instruct
-        print(self.instruction)
-
-def interpret(self, distance, angle):
-    for i in self.instruction:
-        if (i.letter == 'F'):
-            self.pen(True)
-            move(i.parameter[0])
-        elif (i.letter == 'f'):
-            self.pen(False)
-            move(i.paramter[0])
-        elif (i.letter == '+'):
-            turn(i.parameter[0])
-        elif (i.letter == '&'):
-            pitch(i.parameter[0])
-        elif (i.letter == '/'):
-            roll(i,parameter[0])
-        elif (i.letter == '['):
-            save();
-        elif (i.letter == ']'):
-            restore();
-        elif (i.letter == '!'):
-
-rules = Rules({'la': 94}, '!(1)F(200)/(45)A', ['A:* -> !(vr)F(50)[&(a)]','F(l) : * -> F(l*la)A'])
-rules.generate(0)
+        self.interpret()
