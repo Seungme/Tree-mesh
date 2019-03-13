@@ -12,7 +12,7 @@ class Path(NamedTuple):
 class Turtle:
 
     def __init__(self):
-        self.basis = np.array([[1.0,0.0,0.0], [0.0,1.0,0.0], [0.0,0.0,1.0]])
+        self.basis = np.array([[0.0,0.0,-1.0], [0.0,1.0,0.0], [1.0,0.0,0.0]])
         self.coord = np.array([0.0,0.0,0.0])
         self.pen = True
         self.width = 0.001
@@ -28,6 +28,7 @@ class Turtle:
     def move(self, distance):
         distance = float(distance)
         new_coord = self.coord + self.basis[0] * distance
+        coord = new_coord.copy()
         if self.pen == True:
             path = Path(self.coord.tolist(), new_coord.tolist(), self.width)
             self.path.append(path)

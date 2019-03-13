@@ -104,13 +104,3 @@ class Rules(Turtle):
 
             self.instruction = final_instruct
         self.interpret()
-
-#rules = Rules({'a': 22.5, 'd': 0.1}, 'F(d)', ['F(x): * -> F(d)F(d)+(-a)[+(-a)F(d)+(a)F(d)+(a)F(d)] \
-#                                      +(a)[+(a)F(d)+(-a)F(d)+(-a)F(d)]'])
-rules = Rules({'d1':94.74, 'd2':132.63, 'a':18.95,
-               'lr':1.1109, 'vr':1.732},
-               '!(1)F(200)/(45)A',
-               ['A: * -> !(vr)F(50)[&(a)F(50)A]/(d1) \
-                       [&(a)F(50)A]/(d2)[&(a)F(50)A]',
-                'F(l): * -> F(l*lr)',
-                '!(w) : * -> !(w*vr)'])
