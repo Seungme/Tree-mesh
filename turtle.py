@@ -18,6 +18,10 @@ class Turtle:
         self.width = 0.001
         self.stack = []
         self.path = []
+        self.current_polygone = []
+        self.polygones = []
+        self.polygone_stack = []
+        self.lines = []
 
     def set_pen(self, condition):
         self.pen = condition
@@ -67,3 +71,21 @@ class Turtle:
         self.width = self.stack.pop()
         self.coord = self.stack.pop()
         self.basis = self.stack.pop()
+
+    def new_vertex(self):
+        self.current_polygone.append(self.coord.tolist())
+
+    def move_polygone(self, distance):
+        distance = float(distance)
+        new_coord = self.coord + self.basis[0] * distance
+        path = Path(self.coord.tolist(), new_coord.tolist(), self.width)
+        self.lines.append(path)
+        self.coord = new_coord
+
+    def save_polygone(self):
+        self.polygone_stack.append(self.current_polygone.copy())
+        self.current_polygone = []
+
+    def restore_polygone(self):
+        self.polygones.append(self.current_polygone)
+        self.current_polygone = self.polygone_stack.pop()

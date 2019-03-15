@@ -61,6 +61,9 @@ class Rules(Turtle):
             m = Module(module[0], arguments)
             b = a[1].split('->')
             condition = b[0].strip()
+            #if condition has = sign, change it to == for python evaluation
+            if condition.find('=') != -1:
+                condition = condition.replace('=', '==')
             succ = b[1].strip()
             p = Production(predecessor=m, condition=condition, successor=succ)
             self.production.append(p)
@@ -85,6 +88,15 @@ class Rules(Turtle):
                 super(Rules, self).restore();
             elif (i.letter == '!'):
                 super(Rules, self).set_width(i.parameter[0])
+            elif (i.letter == 'G'):
+                super(Rules, self).move_polygone(i.parameter[0])
+            elif (i.letter == '{'):
+                super(Rules, self).save_polygone()
+            elif (i.letter == '}'):
+                super(Rules, self).restore_polygone()
+            elif (i.letter == '.'):
+                super(Rules, self).new_vertex()
+
 
     def generate(self, iteration):
         for i in range (iteration):
@@ -104,3 +116,13 @@ class Rules(Turtle):
 
             self.instruction = final_instruct
         self.interpret()
+
+
+rules = Rules({'LA':5, 'RA':1.15, 'LB':1.3,
+               'RB':1.25, 'LC':3, 'RC':1.19},
+               '[{A(0,0).}][{A(0,1).}]',
+               ['A(t,d) : d=0 -> .G(LA,RA).[+(60)B(t)G(LC,RC,t).}][+(60)B(t){.]A(t+1,d)',
+                'A(t,d) : d=1 -> .G(LA,RA).[+(-60)B(t)G(LC,RC,t).}][+(-60)B(t){.]A(t+1,d)',
+                'B(t) : t>0 -> G(LB,RB)B(t-1)',
+                'G(s,r) : * -> G(s*r,r)',
+                'G(s,r,t) : t>1 -> G(s*r,r,t-1)'])
