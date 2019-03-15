@@ -12,7 +12,7 @@ class Path(NamedTuple):
 class Turtle:
 
     def __init__(self):
-        self.basis = np.array([[0.0,0.0,-1.0], [0.0,1.0,0.0], [1.0,0.0,0.0]])
+        self.basis = np.array([[0.0,0.0,1.0], [0.0,1.0,0.0], [1.0,0.0,0.0]])
         self.coord = np.array([0.0,0.0,0.0])
         self.pen = True
         self.width = 0.001
