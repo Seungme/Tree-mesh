@@ -126,3 +126,14 @@ rules = Rules({'LA':5, 'RA':1.15, 'LB':1.3,
                 'B(t) : t>0 -> G(LB,RB)B(t-1)',
                 'G(s,r) : * -> G(s*r,r)',
                 'G(s,r,t) : t>1 -> G(s*r,r,t-1)'])
+rules.generate(5)
+
+print(len(rules.polygones))
+print(len(rules.lines))
+li = []
+for l in rules.polygones:
+    li.extend(l)
+print(rules.polygones)
+for l in rules.lines:
+    one = li.index(l[0])
+    two = li.index(l[1])

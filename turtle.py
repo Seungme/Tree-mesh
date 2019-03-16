@@ -78,8 +78,8 @@ class Turtle:
     def move_polygone(self, distance):
         distance = float(distance)
         new_coord = self.coord + self.basis[0] * distance
-        path = Path(self.coord.tolist(), new_coord.tolist(), self.width)
-        self.lines.append(path)
+        line = [self.coord.tolist(), new_coord.tolist()]
+        self.lines.append(line)
         self.coord = new_coord
 
     def save_polygone(self):
