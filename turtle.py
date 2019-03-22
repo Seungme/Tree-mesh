@@ -22,7 +22,7 @@ class Turtle:
         self.polygones = []
         self.polygone_stack = []
         self.lines = []
-        self.leaves = []
+        self.leaf = []
 
     def set_pen(self, condition):
         self.pen = condition
