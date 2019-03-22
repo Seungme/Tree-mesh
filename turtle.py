@@ -11,9 +11,9 @@ class Path(NamedTuple):
 
 class Turtle:
 
-    def __init__(self):
-        self.basis = np.array([[0.0,0.0,1.0], [0.0,1.0,0.0], [1.0,0.0,0.0]])
-        self.coord = np.array([0.0,0.0,0.0])
+    def __init__(self, coord, basis):
+        self.basis = basis #p.array([[0.0,0.0,1.0], [0.0,1.0,0.0], [1.0,0.0,0.0]])
+        self.coord = coord #np.array([0.0,0.0,0.0])
         self.pen = True
         self.width = 0.001
         self.stack = []

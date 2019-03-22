@@ -45,8 +45,8 @@ def replace(d, string):
 
 class Rules(Turtle):
 
-    def __init__(self, define, axiom, production):
-        super(Rules, self).__init__()
+    def __init__(self, define, axiom, production, coord, basis):
+        super(Rules, self).__init__(coord, basis)
         self.define = define
         axiom = replace(define, axiom)
         self.instruction = string_to_module(axiom)
@@ -117,7 +117,7 @@ class Rules(Turtle):
             self.instruction = final_instruct
         self.interpret()
 
-
+'''
 rules = Rules({'LA':5, 'RA':1.15, 'LB':1.3,
                'RB':1.25, 'LC':3, 'RC':1.19},
                '[{A(0,0).}][{A(0,1).}]',
@@ -137,3 +137,4 @@ print(rules.polygones)
 for l in rules.lines:
     one = li.index(l[0])
     two = li.index(l[1])
+'''
