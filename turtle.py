@@ -22,6 +22,7 @@ class Turtle:
         self.polygones = []
         self.polygone_stack = []
         self.lines = []
+        self.leaves = []
 
     def set_pen(self, condition):
         self.pen = condition
@@ -89,3 +90,7 @@ class Turtle:
     def restore_polygone(self):
         self.polygones.append(self.current_polygone)
         self.current_polygone = self.polygone_stack.pop()
+
+    def save_leaf(self):
+        self.leaf.append(self.coord);
+        self.leaf.append(self.basis);

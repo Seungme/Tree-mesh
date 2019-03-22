@@ -96,6 +96,8 @@ class Rules(Turtle):
                 super(Rules, self).restore_polygone()
             elif (i.letter == '.'):
                 super(Rules, self).new_vertex()
+            elif (i.letter == '~'):
+                super(Rules, self).save_leaf()
 
 
     def generate(self, iteration):
