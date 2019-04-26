@@ -98,6 +98,10 @@ class Rules(Turtle):
                 super(Rules, self).new_vertex()
             elif (i.letter == '~'):
                 super(Rules, self).save_leaf()
+            elif (i.letter == '#'):
+                super(Rules, self).save_flower()
+            elif (i.letter == '@'):
+                super(Rules, self).save_fruit()
 
 
     def generate(self, iteration):

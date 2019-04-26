@@ -23,6 +23,8 @@ class Turtle:
         self.polygone_stack = []
         self.lines = []
         self.leaf = []
+        self.flower = []
+        self.fruit = []
 
     def set_pen(self, condition):
         self.pen = condition
@@ -94,3 +96,11 @@ class Turtle:
     def save_leaf(self):
         self.leaf.append(self.coord);
         self.leaf.append(self.basis);
+
+    def save_flower(self):
+        self.flower.append(self.coord);
+        self.flower.append(self.basis);
+
+    def save_fruit(self):
+        self.fruit.append(self.coord);
+        self.fruit.append(self.basis);
